@@ -1,0 +1,110 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Mahasiswa;
+use Illuminate\Http\Request;
+
+class DashboardMahasiswaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('dashboard.mahasiswa.index', [
+            'mahasiswa' => Mahasiswa::all()
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('dashboard.mahasiswa.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $attr = $request->validate([
+            'nama' => 'required',
+            'jurusan' => 'required',
+            'alamat' => 'required',
+            'jender' => 'required',
+        ]);
+
+        Mahasiswa::create($attr);
+
+        return redirect('dashboard/mahasiswa')->with('success', 'Data di Tambahkan');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Mahasiswa $mahasiswa)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Mahasiswa $mahasiswa)
+    {
+        return view('dashboard.mahasiswa.edit', [
+            'mahasiswa' => $mahasiswa
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Mahasiswa $mahasiswa)
+    {
+        $attr = $request->validate([
+            'nama' => 'required',
+            'jurusan' => 'required',
+            'alamat' => 'required',
+            'jender' => 'required',
+        ]);
+
+        Mahasiswa::where('id', $mahasiswa->id)->update($attr);
+
+        return redirect('dashboard/mahasiswa')->with('success', 'Data di Ubah');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Mahasiswa  $mahasiswa
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Mahasiswa $mahasiswa)
+    {
+        // Mahasiswa::destroy($mahasiswa->id);
+        $mahasiswa->delete();
+
+        return redirect('dashboard/mahasiswa')->with('success', 'Data Mahasiswa di Hapus');
+    }
+}
