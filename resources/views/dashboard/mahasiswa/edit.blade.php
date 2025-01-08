@@ -29,16 +29,14 @@
                                 <input type="text" class="form-control" name="email" id="email" placeholder="masukan email" value="{{ old('email', $mahasiswa->email) }}">
                             </div>
     
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="jender">Jender</label>
                                 <select class="form-select" name="jender" id="jender">
-                                    @if(old('jender', $mahasiswa->jender))
-                                        <option value="{{ $mahasiswa->jender }}" selected>{{ $mahasiswa->jender }}</option>
-                                        <option value="Laki-Laki">Laki Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    @endif
+                                    <option value="">-Pilih Jenis Jender-</option>
+                                    <option value="Laki-Laki" @if ($mahasiswa->jender == "Laki-Laki") selected @endif>Laki Laki</option>
+                                    <option value="Perempuan" @if ($mahasiswa->jender == "Laki-Laki") selected @endif>Perempuan</option>
                                 </select>
-                            </div> --}}
+                            </div>
     
                             <button type="submit" class="btn btn-danger btn-block btn-lg mt-3">Ubah</button>
     
