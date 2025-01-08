@@ -21,7 +21,7 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
-                
+
                 <li
                     class="sidebar-item {{ Request::is('dashboard') ? 'active' : '' }}">
                     <a href="/dashboard" class='sidebar-link'>
@@ -29,7 +29,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                
+
                 <li
                     class="sidebar-item {{ Request::is('dashboard/user*') ? 'active' : '' }}">
                     <a href="/dashboard/user" class='sidebar-link'>
@@ -37,7 +37,13 @@
                         <span>Data User</span>
                     </a>
                 </li>
-                
+                <li
+                    class="sidebar-item {{ Request::is('transaksi*') ? 'active' : '' }}">
+                    <a href="/transaksi" class='sidebar-link'>
+                        <i class="bi bi-life-preserver"></i>
+                        <span>Transaksi</span>
+                    </a>
+                </li>
                 <li
                     class="sidebar-item  ">
                     {{-- <a href="/dashboard/logout" class='sidebar-link'>
@@ -52,7 +58,7 @@
                     </form>
                 </li>
 
-                
+
 
             </ul>
         </div>
