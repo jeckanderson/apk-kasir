@@ -9,10 +9,10 @@
 </header>
 
 <div class="page-heading">
-    <h3>Data User</h3>
+    <h3>Data Barang</h3>
 
     @can('admin')
-        <a href="/dashboard/user/create" class="btn btn-primary shadow-lg mt-3">Tambah Data</a>
+        <a href="/dashboard/barang/create" class="btn btn-primary btn-lg shadow-lg mt-3">Tambah Data</a>
     @endcan
 </div>
 
@@ -38,31 +38,29 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Username</th>
-                                            <th>Nama</th>
-                                            {{-- <th>Email</th> --}}
-                                            <th>Akses</th>
+                                            <th>Kode Barang</th>
+                                            <th>Nama Barang</th>
+                                            <th>Harga</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $row)
+                                        {{-- @foreach ($barangs as $row)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td class="text-bold-500">{{ $row->name }}</td>
-                                                <td class="text-bold-500">Admin</td>
-                                                {{-- <td class="text-bold-500">{{ $row->email }}</td> --}}
-                                                <td>{{ $row->username}}</td>
+                                                <td class="text-bold-500">{{ $row->kode_barang }}</td>
+                                                <td class="text-bold-500">{{ $row->nama_barang }}</td>
+                                                <td class="text-bold-500">{{ $row->harga_barang}}</td>
                                                 <td>
-                                                    <a href="/dashboard/user/{{ $row->id }}/edit" class="badge bg-warning">Update</a>
-                                                    <form action="/dashboard/user/{{ $row->id }}" method="post" class="d-inline">
+                                                    <a href="/dashboard/barang/{{ $row->id }}/edit" class="badge bg-warning">Update</a>
+                                                    <form action="/dashboard/barang/{{ $row->id }}" method="post" class="d-inline">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="badge bg-danger border-0" onclick="return confirm('yakin?')">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>

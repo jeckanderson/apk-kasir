@@ -8,12 +8,12 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>CRUD Laravel 9</title>
+    <title>APP Kasir</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #42599F">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #969696">
         <div class="container">
-            <a class="navbar-brand" href="/">Laravel 9</a>
+            <a class="navbar-brand" href="/">APP Kasir</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,9 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="/login">Login</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link active" href="/register">Registasi</a>
-                        </li>
+                        </li> --}}
                     @endauth
                 </ul>
             </div>

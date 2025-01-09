@@ -25,33 +25,22 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-            'name' => 'Admin',
             'username' => 'administrator',
+            'nama' => 'Admin',
+            'akses' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345'),
-            // 'password' => 'adminpass',
+            // 'password' => bcrypt('12345'),
+            'password' => 'adminpass',
             'is_admin' => 1
         ]);
         User::create([
-            'name' => 'User',
             'username' => 'user',
+            'nama' => 'User',
             'email' => 'user@gmail.com',
-            'password' => bcrypt('12345'),
-            // 'password' => 'userpass',
+            'akses' => 'kasir',
+            // 'password' => bcrypt('12345'),
+            'password' => 'userpass',
             'is_admin' => 0
-        ]);
-
-        Mahasiswa::create([
-            'nama' => 'Jeck Anderson',
-            'jurusan' => 'Teknik Informatika',
-            'alamat' => 'Jogja',
-            'jender' => 'Laki-Laki',
-        ]);
-        Mahasiswa::create([
-            'nama' => 'Alexander',
-            'jurusan' => 'Teknik Elektro',
-            'alamat' => 'Surabaya',
-            'jender' => 'Laki-Laki',
         ]);
     }
 }

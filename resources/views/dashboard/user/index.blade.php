@@ -6,14 +6,27 @@
     <a href="#" class="burger-btn d-block d-xl-none">
         <i class="bi bi-justify fs-3"></i>
     </a>
+    <h3>{{ $title }}</h3>
 </header>
 
-<div class="page-heading">
-    <h3>Data User</h3>
 
-    @can('admin')
-        <a href="/dashboard/user/create" class="btn btn-primary btn-block btn-lg shadow-lg mt-3">Tambah Data</a>
-    @endcan
+
+<div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <form action="/dashboard/user">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Masukan keyword pencarian" name="search">
+                    <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                  </div>
+            </form>
+      </div>
+      <div class="col-md-6">
+            <div class="input-group">
+                @can('admin')
+                    <a href="/dashboard/user/create" class="btn btn-primary shadow-lg">Tambah Data</a>
+                @endcan
+            </div>
+      </div>
 </div>
 
     @if (session()->has('success'))
@@ -38,23 +51,21 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Username</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Username</th>
-                                            @can('admin')
-                                            <th>Password</th>
-                                            @endcan
+                                            <th>Akses</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $row)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td class="text-bold-500">{{ $row->name }}</td>
+                                                <td class="text-bold-500">{{ $loop->iteration }}</td>
+                                                <td class="text-bold-500">{{ $row->username}}</td>
+                                                <td class="text-bold-500">{{ $row->nama }}</td>
                                                 <td class="text-bold-500">{{ $row->email }}</td>
-                                                <td>{{ $row->username}}</td>
-                                                @can('admin')
-                                                <td>{{ $row->password }}</td>
+                                                <td class="text-bold-500">{{ $row->akses }}</td>
                                                 <td>
                                                     <a href="/dashboard/user/{{ $row->id }}/edit" class="badge bg-warning">Update</a>
                                                     <form action="/dashboard/user/{{ $row->id }}" method="post" class="d-inline">
@@ -63,7 +74,6 @@
                                                         <button class="badge bg-danger border-0" onclick="return confirm('yakin?')">Delete</button>
                                                     </form>
                                                 </td>
-                                                @endcan
                                             </tr>
                                         @endforeach
                                     </tbody>

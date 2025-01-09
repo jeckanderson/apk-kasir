@@ -14,9 +14,18 @@ class DashboardUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('dashboard.mahasiswa.index', [
-            'users' => User::all()
+    {   
+        $user = User::latest();
+
+        if(request('search')) {
+            $user->where('username', 'like', '%' . request('search') . '%')
+                    ->orWhere('nama', 'like', '%' . request('search') . '%')
+                    ->orWhere('akses', 'like', '%' . request('search') . '%');
+        }
+
+        return view('dashboard.user.index', [
+            'title' => 'Data User',
+            'users' => $user->get()
         ]);
     }
 
@@ -27,7 +36,9 @@ class DashboardUserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.user.create');
+        return view('dashboard.user.create', [
+            'title' => 'Tambah Data User'
+        ]);
     }
 
     /**
@@ -39,13 +50,14 @@ class DashboardUserController extends Controller
     public function store(Request $request)
     {
         $attr = $request->validate([
-            'name' => ['required', 'max:255'],
             'username' => ['required', 'min:3', 'unique:users'],
+            'nama' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users'],
+            'akses' => ['required'],
             'password' => ['required', 'min:5', 'max:255']
         ]);
 
-        $attr['password'] = Hash::make($attr['password']);
+        // $attr['password'] = Hash::make($attr['password']);
 
         User::create($attr);
 
@@ -72,6 +84,7 @@ class DashboardUserController extends Controller
     public function edit(User $user)
     {
         return view('dashboard.user.edit', [
+            'title' => 'Edit Data User',
             'user' => $user
         ]);
     }
@@ -86,9 +99,11 @@ class DashboardUserController extends Controller
     public function update(Request $request, User $user)
     {
         $attr = $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required'
+            'username' => ['required','unique:users'],
+            'nama' => ['required'],
+            'email' => ['required', 'email', 'unique:users'],
+            'akses' => ['required'],
+            'password' => ['required', 'min:5', 'max:255']
         ]);
 
         User::where('id', $user->id)->update($attr);

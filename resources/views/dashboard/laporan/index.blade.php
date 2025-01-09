@@ -8,13 +8,21 @@
     </a>
 </header>
 
-<div class="page-heading">
-    <h3>Data User</h3>
 
-    @can('admin')
-        <a href="/dashboard/user/create" class="btn btn-primary shadow-lg mt-3">Tambah Data</a>
-    @endcan
-</div>
+<h3>Laporan Penjualan</h3>
+
+    <form action="/laporann" method="GET">
+        <div class="form-group">
+            <label for="tanggal_awal">Tanggal Awal</label>
+            <input type="date" id="tanggal_awal" name="tanggal_awal" class="form-control" value="{{ request('tanggal_awal') }}">
+        </div>
+        <div class="form-group">
+            <label for="tanggal_akhir">Tanggal Akhir</label>
+            <input type="date" id="tanggal_akhir" name="tanggal_akhir" class="form-control" value="{{ request('tanggal_akhir') }}">
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-2 mb-4">Cari</button>
+    </form>
 
     @if (session()->has('success'))
         <div class="alert alert-warning">
@@ -29,40 +37,37 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        {{-- <div class="card-header">
-                            <h4>Profile Visit</h4>
-                        </div> --}}
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table mb-0 table-lg">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Username</th>
-                                            <th>Nama</th>
-                                            {{-- <th>Email</th> --}}
-                                            <th>Akses</th>
-                                            <th>Aksi</th>
+                                            <th>Tanggal</th>
+                                            <th>Kode Barang</th>
+                                            <th>Nama Barang</th>
+                                            <th>Jumlah</th>
+                                            <th>Harga</th>
+                                            <th>Sub Total</th>
+                                            <th>Kasir</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $row)
+                                        {{-- @foreach ($barangs as $row)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td class="text-bold-500">{{ $row->name }}</td>
-                                                <td class="text-bold-500">Admin</td>
-                                                {{-- <td class="text-bold-500">{{ $row->email }}</td> --}}
-                                                <td>{{ $row->username}}</td>
+                                                <td class="text-bold-500">{{ $row->kode_barang }}</td>
+                                                <td class="text-bold-500">{{ $row->nama_barang }}</td>
+                                                <td class="text-bold-500">{{ $row->harga_barang}}</td>
                                                 <td>
-                                                    <a href="/dashboard/user/{{ $row->id }}/edit" class="badge bg-warning">Update</a>
-                                                    <form action="/dashboard/user/{{ $row->id }}" method="post" class="d-inline">
+                                                    <a href="/dashboard/barang/{{ $row->id }}/edit" class="badge bg-warning">Update</a>
+                                                    <form action="/dashboard/barang/{{ $row->id }}" method="post" class="d-inline">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="badge bg-danger border-0" onclick="return confirm('yakin?')">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>

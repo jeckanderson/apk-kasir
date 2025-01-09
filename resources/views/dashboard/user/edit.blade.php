@@ -15,30 +15,28 @@
                         @method('put')
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Nama</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="masukan name" value="{{ old('name', $user->name) }}"> 
-                            </div>
-                            
-                            <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="masukan username" value="{{ old('username', $user->username) }}">
+                                <input type="text" class="form-control" name="username" id="username" placeholder="masukan username" value="{{ old('username', $user->username) }}" required>
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="masukan nama" value="{{ old('nama', $user->nama) }}" required> 
+                            </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="masukan email" value="{{ old('email', $user->email) }}">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="masukan email" value="{{ old('email', $user->email) }}" required>
                             </div>
-    
-                            {{-- <div class="form-group">
-                                <label for="jender">Jender</label>
-                                <select class="form-select" name="jender" id="jender">
-                                    @if(old('jender', $mahasiswa->jender))
-                                        <option value="{{ $mahasiswa->jender }}" selected>{{ $mahasiswa->jender }}</option>
-                                        <option value="Laki-Laki">Laki Laki</option>
-                                        <option value="Perempuan">Perempuan</option>
-                                    @endif
-                                </select>
-                            </div> --}}
+                            <div class="form-group">
+                                <label for="akses">Akses</label>
+                                <select class="form-select" aria-label="Default select example" name="akses" id="akses" required>
+                                    <option value="admin" @if ($user->akses == "admin") selected @endif>Admin</option>
+                                    <option value="kasir" @if ($user->akses == "kasir") selected @endif>Kasir</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="masukan password" value="{{ old('password', $user->password) }}" required>
+                            </div>
     
                             <button type="submit" class="btn btn-danger btn-block btn-lg mt-3">Ubah</button>
     

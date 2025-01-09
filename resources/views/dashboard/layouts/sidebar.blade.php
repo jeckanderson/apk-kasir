@@ -29,7 +29,22 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+            @can('admin');
+                <li
+                class="sidebar-item {{ Request::is('dashboard/barang*') ? 'active' : '' }}">
+                <a href="/dashboard/barang" class='sidebar-link'>
+                    <i class="bi bi-life-preserver"></i>
+                    <span>Data Barang</span>
+                </a>
+            </li>
                 
+                {{-- <li
+                    class="sidebar-item {{ Request::is('dashboard/user*') ? 'active' : '' }}">
+                    <a href="/dashboard/user" class='sidebar-link'>
+                        <i class="bi bi-life-preserver"></i>
+                        <span>Data User</span>
+                    </a>
+                </li> --}}
                 <li
                     class="sidebar-item {{ Request::is('dashboard/user*') ? 'active' : '' }}">
                     <a href="/dashboard/user" class='sidebar-link'>
@@ -37,23 +52,29 @@
                         <span>Data User</span>
                     </a>
                 </li>
-                
+                <li
+                class="sidebar-item {{ Request::is('/laporan*') ? 'active' : '' }}">
+                <a href="/laporan" class='sidebar-link'>
+                    <i class="bi bi-life-preserver"></i>
+                    <span>Data Laporan</span>
+                </a>
+            </li>
+            @endcan;
+
+                <li class="sidebar-item {{ Request::is('dashboard/transaksi*') ? 'active' : '' }}">
+                    <a href="/dashboard/transaksi" class='sidebar-link'>
+                        <i class="bi bi-life-preserver"></i>
+                        <span>Transaksi</span>
+                    </a>
+                </li>
                 <li
                     class="sidebar-item  ">
-                    {{-- <a href="/dashboard/logout" class='sidebar-link'>
-                        <i class="bi bi-puzzle"></i>
-                        <span>Logout</span>
-                    </a> --}}
-
                     <form action="/logout" method="post" class="sidebar-link">
                         @csrf
                         <i class="bi bi-puzzle"></i>
                         <button class='bg-white border-0 px-3'>Logout</button>
                     </form>
                 </li>
-
-                
-
             </ul>
         </div>
     </div>
