@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <h3 class="text-center">Keranjang Belanja</h3>
+                        <h4 class="text-center">Keranjang Belanja</h4>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -71,7 +71,7 @@
                                                 <td>Meja</td>
                                                 <td>150.000</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                                                    <a href="#" class="badge bg-danger">Hapus</a>
                                                 </td>
                                             </tr>
                                             {{-- @foreach ($barangs as $row)
