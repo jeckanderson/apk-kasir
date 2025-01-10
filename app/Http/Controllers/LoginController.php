@@ -16,11 +16,13 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required',
             'password' => 'required'
         ]);
 
+        $credentials = $request->only('email', 'password');
+        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (auth()->user()->is_admin == 1) {

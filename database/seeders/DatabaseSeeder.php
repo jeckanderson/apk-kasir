@@ -29,8 +29,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'Admin',
             'akses' => 'admin',
             'email' => 'admin@gmail.com',
-            // 'password' => bcrypt('12345'),
-            'password' => 'adminpass',
+            'password' => bcrypt('admin'),
             'is_admin' => 1
         ]);
         User::create([
@@ -38,8 +37,7 @@ class DatabaseSeeder extends Seeder
             'nama' => 'User',
             'email' => 'user@gmail.com',
             'akses' => 'kasir',
-            // 'password' => bcrypt('12345'),
-            'password' => 'userpass',
+            'password' => bcrypt('kasir'),
             'is_admin' => 0
         ]);
     }
