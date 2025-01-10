@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('template/assets/images/logo/favicon.png') }}" type="image/png">
 
     <link rel="stylesheet" href="{{ asset('template/assets/css/shared/iconly.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/css/shared/iconly.css') }}">
 
 </head>
 
@@ -28,9 +29,12 @@
     <script src="{{ asset('template/assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('template/assets/js/app.js') }}"></script>
 
+    <script src="{{ asset('template/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('template/assets/js/pages/dashboard.js') }}"></script>
     <!-- Need: Apexcharts -->
     <script src="{{ asset('template/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/pages/dashboard.js') }}"></script>
+    @yield('script')
 
 </body>
 

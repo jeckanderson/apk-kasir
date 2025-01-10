@@ -60,12 +60,13 @@
                         </li>
 
                         {{-- <li
-                    class="sidebar-item {{ Request::is('dashboard/user*') ? 'active' : '' }}">
-                    <a href="/dashboard/user" class='sidebar-link'>
-                        <i class="bi bi-life-preserver"></i>
-                        <span>Data User</span>
-                    </a>
-                </li> --}}
+                        <li
+                            class="sidebar-item {{ Request::is('dashboard/user*') ? 'active' : '' }}">
+                            <a href="/dashboard/user" class='sidebar-link'>
+                                <i class="bi bi-life-preserver"></i>
+                                <span>Data User</span>
+                            </a>
+                        </li> --}}
                         <li class="sidebar-item {{ Request::is('dashboard/user*') ? 'active' : '' }}">
                             <a href="/dashboard/user" class='sidebar-link'>
                                 <i class="bi bi-life-preserver"></i>
@@ -79,10 +80,10 @@
                             </a>
                         </li>
                     @endif
-
+                    </li>
                     @if (Auth::user()->akses === 'kasir')
-                        <li class="sidebar-item {{ Request::is('dashboard/transaksi*') ? 'active' : '' }}">
-                            <a href="/dashboard/transaksi" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::is('transaksi*') ? 'active' : '' }}">
+                            <a href="/transaksi" class='sidebar-link'>
                                 <i class="bi bi-life-preserver"></i>
                                 <span>Transaksi</span>
                             </a>

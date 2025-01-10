@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\DataBarangController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TransaksiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +44,11 @@ Route::resource('/dashboard/barang', DataBarangController::class)->except('show'
 Route::get('/laporan', [LaporanController::class, 'index'])->name('index');
 Route::get('/laporann', [LaporanController::class, 'laporann'])->name('laporann');
 
-Route::resource('/dashboard/transaksi', TransaksiController::class)->except('show')->middleware('auth');
+// Route::resource('/dashboard/transaksi', [TransaksiController::class, 'show'])->except('show')->middleware('auth');
+
+Route::resource('/product', ProdukController::class);
+
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name("transaksi.index")->middleware('auth');
+Route::post('/transaksi/tambah', [TransaksiController::class, 'tambah'])->name("transaksi.tambah")->middleware('auth');
+Route::get('/transaksi/selesai', [TransaksiController::class, 'selesai'])->name("transaksi.selesai")->middleware('auth');
+Route::get('/transaksi/hapus/{id}', [TransaksiController::class, 'hapus'])->name("transaksi.hapus")->middleware('auth');

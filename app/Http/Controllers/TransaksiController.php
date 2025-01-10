@@ -2,85 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('dashboard.transaksi.index', [
-            // 'barangs' => Barangs::all()
-        ]);
+        $transaction = Transaction::with("barangs")->where("user_id", Auth::user()->id)
+            ->where("status", "cart")->first();
+        return view('transaksi.index')->with('transaction', $transaction);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function hapus(string $id)
     {
-        //
+        Transaction::query()->where('user_id', Auth::user()->id)
+            ->where('status', 'cart')->first()
+            ->barangs()->detach($id);
+
+        return redirect()->route('transaksi.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function selesai()
     {
-        //
+        Transaction::query()->where('user_id', Auth::user()->id)
+            ->where('status', 'cart')->update(['status' => 'selesai']);
+
+        return redirect()->route('transaksi.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function tambah(Request $request)
     {
-        //
+        $product = Barang::query()->where("kode_barang", $request->kode)->first();
+        $subTotal = intval($product->harga_barang) * intval($request->qty);
+        $transaksi = $this->getTransaksi();
+        $product->transactions()->attach($transaksi->id, ['qty' => $request->qty,
+            'harga' => $subTotal,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()]);
+
+
+        return redirect()->route('transaksi.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    private function getTransaksi()
     {
-        //
-    }
+        $userId = Auth::user()->id;
+        $trx = Transaction::query()->where("user_id", $userId)
+            ->where("status", "cart")->first();
+        if (is_null($trx)) {
+            $trx = Transaction::query()->create([
+                "kode_transaksi" => date("YYmmdd") . time(),
+                "user_id" => $userId,
+                "status" => "cart"
+            ]);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $trx;
     }
 }

@@ -50,7 +50,7 @@ class DataBarangController extends Controller
     public function store(Request $request)
     {
         $attr = $request->validate([
-            'kode_barang' => ['required'],
+            'kode_barang' => ['required', 'unique:barangs'],
             'nama_barang' => ['required'],
             'harga_barang' => ['required']
         ]);
@@ -111,9 +111,10 @@ class DataBarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barangs)
+    public function destroy($id)
     {
-        $barangs->delete();
+        Barang::destroy($id);
+        // $barangs->delete();
 
         return redirect('dashboard/barang')->with('success', 'Data barang di Hapus');
     }

@@ -71,7 +71,7 @@
                                                 <td>Meja</td>
                                                 <td>150.000</td>
                                                 <td>
-                                                    <a href="#" class="badge bg-danger">Hapus</a>
+                                                    <a href="#" class="btn btn-primary btn-sm">Hapus</a>
                                                 </td>
                                             </tr>
                                             {{-- @foreach ($barangs as $row)
